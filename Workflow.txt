@@ -1,0 +1,56 @@
+title AI-Powered Quiz Engine Architecture
+
+direction right
+
+Frontend [icon: react, color: blue] {
+  React App [icon: react]
+  PDF Upload [icon: upload]
+  Quiz Interface [icon: list]
+}
+
+Backend [icon: nodejs, color: green] {
+  Express Server [icon: nodejs]
+  PDF Parser [icon: file-text]
+  Quiz Generator [icon: cpu]
+  Answer Validator [icon: check-circle]
+}
+
+OpenRouter API [icon: openai]
+
+Database [icon: database, color: orange] {
+  SQLite [icon: database]
+  
+  Sources Table [icon: file, label: "sources"]
+  Chunks Table [icon: layers, label: "chunks"]
+  Questions Table [icon: help-circle, label: "questions"]
+  Student Stats [icon: bar-chart-2, label: "student_stats"]
+}
+
+// Ingest Flow
+PDF Upload > Express Server: POST /ingest
+Express Server > PDF Parser: extract text
+PDF Parser > Sources Table: insert metadata
+PDF Parser > Chunks Table: insert segments
+
+// Generate Quiz Flow
+React App > Express Server: POST /generate-quiz
+Express Server > Quiz Generator
+Quiz Generator > Chunks Table: retrieve chunks
+Quiz Generator > OpenRouter API: prompt with chunks
+OpenRouter API > Quiz Generator: structured JSON
+Quiz Generator > Questions Table: insert questions
+
+// Source Traceability
+Sources Table > Chunks Table: source_id
+Chunks Table > Questions Table: source_chunk_id
+
+// Quiz Fetch Flow
+Quiz Interface > Express Server: GET /quiz
+Express Server > Questions Table: filter by topic/difficulty
+Questions Table > Express Server
+Express Server > Quiz Interface
+
+// Submit Answer Flow
+Quiz Interface > Answer Validator: POST /submit-answer
+Answer Validator > Student Stats: update difficulty
+Student Stats --> Answer Validator: adaptive difficulty [color: purple]
