@@ -106,6 +106,8 @@ npm start
 
 Peblo AI uses a robust 5-stage pipeline to guarantee diverse, high-quality, non-repetitive quiz questions.
 
+![Workflow Diagram](./workflow_diagram.png)
+
 ### 1. Ingestion & Preprocessing
 When a PDF is uploaded, it is parsed and chunked using a sliding window approach (e.g., 1000 characters with 200 overlap) to preserve context. Metadata like `topic`, `grade`, and `subject` are attached to the source.
 
