@@ -181,7 +181,7 @@ curl -X POST http://localhost:3000/submit-answer \
 
 ## 🧩 Adaptive Logic
 
-The system monitors student accuracy per topic.
+The system monitors student accuracy per topic, utilizing a randomly generated `studentId` (e.g., `STU_123`) created by the frontend on initial load.
 
 - **Promotion:** If accuracy reaches ≥80% after 3+ attempts, difficulty increments.
 - **Demotion:** If accuracy falls below 40% after 3+ attempts, difficulty decrements.
