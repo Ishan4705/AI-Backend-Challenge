@@ -1,11 +1,15 @@
+import dotenv from "dotenv";
+dotenv.config();
+// console.log("--- Environment Check ---");
+// console.log("PORT:", process.env.PORT);
+// console.log("DB URL:", process.env.DATABASE_URL);
+// console.log("API KEY LOADED:", !!process.env.OPENROUTER_API_KEY);
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import ingestRoutes from "./routes/ingest.js";
 import quizRoutes from "./routes/quiz.js";
 import answerRoutes from "./routes/answer.js";
 
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;

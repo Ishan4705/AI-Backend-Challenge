@@ -1,6 +1,6 @@
 import { sqliteTable, text, integer, real } from "drizzle-orm/sqlite-core";
 
-// ─── Sources ────────────────────────────────────────────────────────
+// ─── Sources ─────────────────────────────────────────────────────────
 export const sources = sqliteTable("sources", {
   id: text("id").primaryKey(),
   filename: text("filename").notNull(),
@@ -36,11 +36,13 @@ export const questions = sqliteTable("questions", {
   correctAnswer: text("correct_answer").notNull(),
   explanation: text("explanation"),
   topic: text("topic"),
+  embedding: text("embedding"),         // JSON stringified number[] — cached embedding vector
+  qualityScore: integer("quality_score"), // 0–100 combined quality score
+  bloomsLevel: text("blooms_level"),      // "recall" | "understand" | "apply" | "analyze"
   createdAt: text("created_at")
     .notNull()
     .$defaultFn(() => new Date().toISOString()),
 });
-
 // ─── Student Stats ──────────────────────────────────────────────────
 export const studentStats = sqliteTable("student_stats", {
   id: text("id").primaryKey(),

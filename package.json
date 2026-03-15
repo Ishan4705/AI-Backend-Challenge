@@ -4,8 +4,10 @@
   "description": "Peblo AI - Adaptive quiz generation platform with PDF ingestion and OpenRouter integration",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
+    "dev": "concurrently -k -n server,client -c blue,magenta \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "tsx watch src/index.ts",
+    "dev:client": "npm run dev --prefix client",
+    "build": "tsc && npm run build --prefix client",
     "start": "node dist/index.js",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push"
@@ -40,6 +42,7 @@
     "@types/multer": "^2.1.0",
     "@types/node": "^25.5.0",
     "@types/uuid": "^10.0.0",
+    "concurrently": "^9.2.1",
     "drizzle-kit": "^0.31.9",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"

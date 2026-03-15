@@ -1,5 +1,6 @@
 # Dependencies
-node_modules/
+**/node_modules/
+package-lock.json
 
 # Build output
 dist/
@@ -35,3 +36,7 @@ uploads/
 
 # Coverage
 coverage/
+
+# AI Agent folders (eraser diagrams skill files)
+.agent/
+.agents/

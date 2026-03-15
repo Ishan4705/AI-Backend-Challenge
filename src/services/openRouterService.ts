@@ -20,6 +20,7 @@ interface GenerateQuizParams {
   grade?: string;
   difficulty?: string;
   numQuestions?: number;
+  existingQuestions?: string[];
 }
 
 /**
@@ -35,6 +36,7 @@ export async function generateQuizFromChunk(
     grade = "General",
     difficulty = "medium",
     numQuestions = 5,
+    existingQuestions = [],
   } = params;
 
   const systemPrompt = `You are an expert educational assessment designer for ${grade} students.
@@ -83,7 +85,13 @@ EXAMPLE OUTPUT FORMAT:
   }
 ]`;
 
-  const userPrompt = `Generate exactly ${numQuestions} quiz questions about "${topic}" at "${difficulty}" difficulty level from this content:\n\n${chunkContent}`;
+  // Build the duplicate avoidance block
+  let duplicateBlock = "";
+  if (existingQuestions.length > 0) {
+    duplicateBlock = `\n\nIMPORTANT — DUPLICATE AVOIDANCE:\nThe following questions have ALREADY been generated for this content. You MUST NOT repeat or rephrase any of them. Generate completely NEW and DIFFERENT questions.\n\nAlready used questions:\n${existingQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}\n`;
+  }
+
+  const userPrompt = `Generate exactly ${numQuestions} quiz questions about "${topic}" at "${difficulty}" difficulty level from this content:${duplicateBlock}\n\n${chunkContent}`;
 
   const response = await axios.post(
     OPENROUTER_API_URL,
@@ -93,7 +101,7 @@ EXAMPLE OUTPUT FORMAT:
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
       ],
-      temperature: 0.7,
+      temperature: existingQuestions.length > 0 ? 0.95 : 0.7,
       max_tokens: 4096,
     },
     {
