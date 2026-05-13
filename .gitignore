@@ -40,3 +40,6 @@ coverage/
 # AI Agent folders (eraser diagrams skill files)
 .agent/
 .agents/
+
+# Local documentation (interview prep and internal notes)
+docs/
