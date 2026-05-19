@@ -27,7 +27,7 @@ export default function App() {
   } = useQuiz();
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 p-4 md:p-8 font-sans">
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] p-4 md:p-8 font-sans transition-colors">
       <div className="max-w-4xl mx-auto">
         <Header studentId={studentId} />
 
@@ -39,8 +39,8 @@ export default function App() {
         </div>
 
         {/* Main Content Card */}
-        <div className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/60 border border-slate-200 overflow-hidden min-h-[500px]">
-          <nav className="flex bg-slate-50/50 border-b border-slate-100">
+        <div className="bg-[var(--card)] rounded-[2rem] shadow-xl shadow-slate-200/60 border border-[var(--card-border)] overflow-hidden min-h-[500px] transition-colors">
+          <nav className="flex bg-[var(--nav)] border-b border-[var(--nav-border)]">
             <TabBtn active={activeTab === "upload"} label="Ingest" icon={<Upload />} onClick={() => setActiveTab("upload")} />
             <TabBtn active={activeTab === "generate"} label="Generate" icon={<Database />} onClick={() => setActiveTab("generate")} />
             <TabBtn

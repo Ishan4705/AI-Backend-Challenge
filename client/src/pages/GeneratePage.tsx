@@ -19,18 +19,18 @@ export default function GeneratePage({ loading, difficulty, topic, firstSourceId
         </div>
       ) : (
         <div className="max-w-xs">
-          <Database className="w-16 h-16 text-indigo-100 mx-auto mb-4" />
+          <Database className="w-16 h-16 text-indigo-100 dark:text-indigo-900 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-2">Ready to Build</h2>
-          <p className="text-slate-500 mb-2 text-sm">
+          <p className="text-slate-500 dark:text-slate-400 mb-2 text-sm">
             Topic: <b>{topic}</b>
           </p>
-          <p className="text-slate-500 mb-8 text-sm">
+          <p className="text-slate-500 dark:text-slate-400 mb-8 text-sm">
             Difficulty: <b>{difficulty}</b>
           </p>
           <button
             onClick={() => firstSourceId && onGenerate(firstSourceId)}
             disabled={!firstSourceId}
-            className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 disabled:opacity-50"
+            className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 dark:shadow-indigo-900/30 disabled:opacity-50"
           >
             Start Generation
           </button>

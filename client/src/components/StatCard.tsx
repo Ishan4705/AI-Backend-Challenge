@@ -8,14 +8,14 @@ interface StatCardProps {
 }
 
 const colors = {
-  indigo: "bg-indigo-50 text-indigo-600",
-  amber: "bg-amber-50 text-amber-600",
-  emerald: "bg-emerald-50 text-emerald-600",
+  indigo: "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400",
+  amber: "bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400",
+  emerald: "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400",
 };
 
 export default function StatCard({ icon, label, value, color }: StatCardProps) {
   return (
-    <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
+    <div className="bg-[var(--card)] p-4 rounded-2xl border border-[var(--card-border)] shadow-sm flex items-center gap-4 transition-colors">
       <div className={`p-2 rounded-lg ${colors[color]}`}>
         {React.cloneElement(icon, { size: 18 } as Record<string, unknown>)}
       </div>

@@ -27,7 +27,7 @@ export default function QuizPage({ questions, currentIndex, feedback, onSubmitAn
         <span className="text-[10px] font-black text-indigo-600 tracking-widest">
           QUESTION {currentIndex + 1}/{questions.length}
         </span>
-        <div className="flex-grow h-1.5 mx-4 bg-slate-100 rounded-full overflow-hidden">
+        <div className="flex-grow h-1.5 mx-4 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
           <div
             className="bg-indigo-500 h-full transition-all"
             style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
@@ -52,7 +52,7 @@ export default function QuizPage({ questions, currentIndex, feedback, onSubmitAn
 
         {currentQuestion.type === "FIB" && (
           <input
-            className="w-full p-4 rounded-2xl border-2 border-slate-100 focus:border-indigo-500 outline-none font-medium transition-all"
+            className="w-full p-4 rounded-2xl border-2 border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-indigo-500 outline-none font-medium transition-all"
             placeholder="Type answer and press Enter..."
             onKeyDown={(e) => {
               if (e.key === "Enter") onSubmitAnswer((e.target as HTMLInputElement).value);
@@ -67,8 +67,8 @@ export default function QuizPage({ questions, currentIndex, feedback, onSubmitAn
         <div
           className={`p-6 rounded-3xl border-2 ${
             feedback.correct
-              ? "bg-emerald-50 border-emerald-100 text-emerald-900"
-              : "bg-rose-50 border-rose-100 text-rose-900"
+              ? "bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800 text-emerald-900 dark:text-emerald-100"
+              : "bg-rose-50 dark:bg-rose-900/20 border-rose-100 dark:border-rose-800 text-rose-900 dark:text-rose-100"
           }`}
         >
           <div className="flex gap-4">
